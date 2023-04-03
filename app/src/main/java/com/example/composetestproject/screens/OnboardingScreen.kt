@@ -1,5 +1,6 @@
 package com.example.composetestproject.screens
 
+import android.window.SplashScreen
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -24,6 +25,7 @@ import androidx.navigation.NavController
 import com.example.composetestproject.R
 import com.example.composetestproject.components.EmailInput
 import com.example.composetestproject.components.PasswordInput
+import com.example.composetestproject.navigation.AppScreens
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -125,17 +127,8 @@ fun OnboardingScreen(navController: NavController) {
                         Text(text = "Forgot Password", color = Color.White)
                     }
                 }
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(60.dp)
-                        .clip(RoundedCornerShape(15.dp)),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff246BFD)),
-                    onClick = {
-                        coroutineScope.launch { modalSheetState.hide() }
-                    }
-                ) {
-                    Text(text = "Sign in", color = Color.White)
+                AppButton(navController, modifier = Modifier, text = "Sign in") {
+                    navController.navigate(AppScreens.SplashScreen.name)
                 }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -156,7 +149,8 @@ fun OnboardingScreen(navController: NavController) {
         MainSplash(
             letterSpacing = letterSpacing,
             coroutineScope = coroutineScope,
-            modalSheetState = modalSheetState
+            modalSheetState = modalSheetState,
+            navController = navController
         )
 
 //        Scaffold {
@@ -184,8 +178,27 @@ fun OnboardingScreen(navController: NavController) {
 }
 
 @Composable
+ fun AppButton(navController: NavController, modifier: Modifier, text: String, onClick: ()-> Unit) {
+    Button(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(60.dp)
+            .clip(RoundedCornerShape(15.dp)),
+        colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff246BFD)),
+        onClick = {
+//                        coroutineScope.launch { modalSheetState.hide() }
+//
+            onClick.invoke()
+        }
+    ) {
+        Text(text = text, color = Color.White, fontSize = 18.sp)
+    }
+}
+
+@Composable
 @OptIn(ExperimentalMaterialApi::class)
 fun MainSplash(
+    navController: NavController,
     letterSpacing: TextUnit,
     coroutineScope: CoroutineScope,
     modalSheetState: ModalBottomSheetState
@@ -218,23 +231,29 @@ fun MainSplash(
             )
             Spacer(modifier = Modifier.height(35.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth(0.6f)
-                        .clip(RoundedCornerShape(15.dp))
-                        .height(60.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff246BFD)),
-                    onClick = {
-                        coroutineScope.launch {
-                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+                AppButton(navController = navController, modifier = Modifier.fillMaxWidth(0.6f), text = "Sign in") {
+                    coroutineScope.launch {
+                        modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
 
-                        }
-                    }) {
-                    Text(
-                        text = "Sign in",
-                        style = TextStyle(fontSize = 18.sp, color = Color.White)
-                    )
+                    }
                 }
+//                Button(
+//                    modifier = Modifier
+//                        .fillMaxWidth(0.6f)
+//                        .clip(RoundedCornerShape(15.dp))
+//                        .height(60.dp),
+//                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xff246BFD)),
+//                    onClick = {
+//                        coroutineScope.launch {
+//                            modalSheetState.animateTo(ModalBottomSheetValue.Expanded)
+//
+//                        }
+//                    }) {
+//                    Text(
+//                        text = "Sign in",
+//                        style = TextStyle(fontSize = 18.sp, color = Color.White)
+//                    )
+//                }
                 TextButton(
                     onClick = { /*TODO*/ },
                     modifier = Modifier.padding(start = 20.dp)
