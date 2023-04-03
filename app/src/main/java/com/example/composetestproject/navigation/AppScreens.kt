@@ -2,7 +2,7 @@ package com.example.composetestproject.navigation
 
 enum class AppScreens {
     OnboardingScreen,
-    LoginScreen,
+    SplashScreen,
     SearchScreen,
     HomeScreen,
     StandingsScreen,
@@ -25,7 +25,7 @@ enum class AppScreens {
             ArticleDetailsScreen.name -> ArticleDetailsScreen
             StandingDetailsScreen.name -> StandingDetailsScreen
             MatchDetailsScreen.name -> MatchDetailsScreen
-            LoginScreen.name -> LoginScreen
+            SplashScreen.name -> SplashScreen
             LineUpScreen.name -> LineUpScreen
             null -> OnboardingScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
