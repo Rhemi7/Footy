@@ -2,6 +2,7 @@ package com.example.composetestproject.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
@@ -55,6 +56,17 @@ fun SplashScreen(navController: NavController = NavController(LocalContext.curre
                     SportWidget(color = Color(0xff222232), image = R.drawable.volly, name = "Volleyball")
                 }
             }
+            Spacer(modifier = Modifier.height(150.dp))
+            Column(
+                modifier = Modifier.padding(horizontal = 20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                AppButton(navController = navController, modifier = Modifier, text = "Continue") {
+
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(text = "Skip", color = Color.White, fontSize = 18.sp)
+            }
         }
     }
 }
@@ -63,16 +75,20 @@ fun SplashScreen(navController: NavController = NavController(LocalContext.curre
 fun SportWidget(
     color: Color,
     image: Int,
-    name: String
+    name: String,
+    onClick: () -> Unit = {}
 ) {
    Column(
        horizontalAlignment = Alignment.CenterHorizontally
    ) {
        Surface(
+           shape = CircleShape,
            color = color,
-           modifier = Modifier.size(105.dp)
-               .padding(bottom = 5.dp),
-           shape = CircleShape
+           modifier = Modifier
+               .size(105.dp)
+               .padding(bottom = 5.dp).clickable {
+                    onClick.invoke()
+               },
        ) {
            Image(
                painter = painterResource(id = image),
