@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.composetestproject.R
 import com.example.composetestproject.Sport
+import com.example.composetestproject.navigation.AppScreens
 
 @Preview
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnrememberedMutableState")
@@ -97,7 +98,7 @@ fun SplashScreen(navController: NavController = NavController(LocalContext.curre
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 AppButton(navController = navController, modifier = Modifier, text = "Continue") {
-
+                    navController.navigate(AppScreens.Dashboard.name)
                 }
                 Spacer(modifier = Modifier.height(20.dp))
                 Text(text = "Skip", color = Color.White, fontSize = 18.sp)

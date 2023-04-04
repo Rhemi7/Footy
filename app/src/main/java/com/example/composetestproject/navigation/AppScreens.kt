@@ -11,7 +11,8 @@ enum class AppScreens {
     ArticleDetailsScreen,
     StandingDetailsScreen,
     MatchDetailsScreen,
-    LineUpScreen;
+    LineUpScreen,
+    Dashboard;
 
 
     companion object {
@@ -27,6 +28,7 @@ enum class AppScreens {
             MatchDetailsScreen.name -> MatchDetailsScreen
             SplashScreen.name -> SplashScreen
             LineUpScreen.name -> LineUpScreen
+            Dashboard.name -> Dashboard
             null -> OnboardingScreen
             else -> throw IllegalArgumentException("Route $route is not recognized")
         }
