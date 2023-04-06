@@ -42,6 +42,7 @@ import com.example.composetestproject.components.SportRectangularCard
 import com.example.composetestproject.components.SportyAppBar
 import com.example.composetestproject.model.SportModel
 import com.example.composetestproject.model.sportList
+import com.example.composetestproject.navigation.AppScreens
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -88,7 +89,9 @@ fun HomeScreen(navController: NavController) {
                     fTeamScore = "2",
                     secTeamScore = "0",
                     dur = "HT"
-                )
+                ) {
+                    navController.navigate(AppScreens.MatchDetailsScreen.name)
+                }
                 LeagueCountryComponent(flag = R.drawable.england, country = "England", league = "Premier League")
                 ScoreCardComponent(
                     fTeamImage = R.drawable.astonvilla,
@@ -98,7 +101,9 @@ fun HomeScreen(navController: NavController) {
                     fTeamScore = "2",
                     secTeamScore = "3",
                     dur = "FT"
-                )
+                ){
+                    navController.navigate(AppScreens.MatchDetailsScreen.name)
+                }
                 ScoreCardComponent(
                     fTeamImage = R.drawable.astonvilla,
                     sTeamImage = R.drawable.liverpool,
@@ -107,7 +112,9 @@ fun HomeScreen(navController: NavController) {
                     fTeamScore = "2",
                     secTeamScore = "3",
                     dur = "FT"
-                )
+                ) {
+                    navController.navigate(AppScreens.MatchDetailsScreen.name)
+                }
             }
         }
     }

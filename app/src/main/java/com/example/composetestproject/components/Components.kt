@@ -172,13 +172,14 @@ fun ScoreCardComponent(
     sTeamName: String,
     fTeamScore: String,
     secTeamScore: String,
-    dur: String
+    dur: String,
+    onClick: () -> Unit
 ) {
 
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 20.dp)
+            .padding(vertical = 20.dp).clickable { onClick.invoke() }
     ) {
         Column() {
             Surface(
@@ -195,9 +196,9 @@ fun ScoreCardComponent(
                     modifier = Modifier.padding(horizontal = 13.dp)
                 ) {
                     Row() {
-                        TeamIcon(fTeamImage)
+                        TeamIcon(fTeamImage, size = 38, padding = 8)
                         Spacer(modifier = Modifier.width(3.dp))
-                        TeamIcon(sTeamImage)
+                        TeamIcon(sTeamImage, size = 38, padding = 8)
                     }
                     Row {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -268,16 +269,16 @@ fun LeagueCountryComponent(flag: Int, league: String, country: String) {
 }
 
 @Composable
-fun TeamIcon(team: Int) {
+fun TeamIcon(team: Int, size: Int, padding: Int) {
     Surface(
-        modifier = Modifier.size(38.dp), shape = CircleShape, color = colorResource(
+        modifier = Modifier.size(size.dp), shape = CircleShape, color = colorResource(
             id = com.example.composetestproject.R.color.sub_background
         )
     ) {
         Image(
             painter = painterResource(id = team),
             contentDescription = "Team Image",
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(padding.dp)
         )
     }
 }
@@ -325,7 +326,7 @@ fun SportyAppBar(title: String,
                 if (icon != null) {
                     Icon(imageVector = icon,
                         contentDescription = "Arrow Back",
-                        tint = Color.Red.copy(alpha = 0.7f),
+                        tint = Color.White,
                         modifier = Modifier.clickable { onBackArrowClick.invoke() })
 
                 }
