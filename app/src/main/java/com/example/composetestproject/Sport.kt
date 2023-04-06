@@ -8,3 +8,9 @@ enum class Sport {
     Baseball,
     Basketball
 }
+
+enum class MatchInfo {
+    MatchDetails,
+    LineUp,
+    H2H
+}
