@@ -1,7 +1,6 @@
 package com.example.composetestproject.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -33,6 +32,12 @@ fun AppNavigation() {
         composable(AppScreens.Dashboard.name) {
             Dashboard()
         }
+//        composable(AppScreens.MatchDetailsScreen.name) {
+//            MatchDetailsScreen(navController)
+//        }
+//        composable(AppScreens.HomeHost.name) {
+//            HomeHost()
+//        }
     }
 }
 
@@ -54,5 +59,23 @@ fun DashboardConfigurations(navController: NavHostController) {
         composable(AppScreens.Dashboard.name) {
             Dashboard()
         }
+        composable(AppScreens.MatchDetailsScreen.name) {
+            MatchDetailsScreen(navController)
+        }
+//        composable(AppScreens.HomeHost.name) {
+//            HomeHost()
+//        }
     }
 }
+
+//@Composable
+//fun HomeConfigurations(navController: NavHostController) {
+//    NavHost(navController = navController, startDestination = AppScreens.MatchDetailsScreen.name) {
+//        composable(AppScreens.MatchDetailsScreen.name) {
+//            MatchDetailsScreen(navController)
+//        }
+//        composable(AppScreens.HomeHost.name) {
+//            HomeHost()
+//        }
+//    }
+//}

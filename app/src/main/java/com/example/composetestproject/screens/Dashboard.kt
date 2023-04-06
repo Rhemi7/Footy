@@ -8,6 +8,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.composetestproject.navigation.AppNavigation
 import com.example.composetestproject.navigation.BottomNavBar
 import com.example.composetestproject.navigation.DashboardConfigurations
+//import com.example.composetestproject.navigation.HomeConfigurations
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -17,8 +18,7 @@ fun Dashboard() {
     Scaffold(bottomBar = {
         BottomNavBar(navController = navController)
     }) {
-//        HomeScreen(navController = navController)
-//        ExploreScreen(navController = navController)
         DashboardConfigurations(navController = navController)
     }
 }
+

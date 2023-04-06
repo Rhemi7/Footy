@@ -32,25 +32,29 @@ fun BottomNavBar(navController: NavController) {
         BottomNavItem.Standings,
         BottomNavItem.Profile,
     )
-    BottomNavigation(
-        backgroundColor = colorResource(id = R.color.sub_background),
-        contentColor = Color.Black, modifier = Modifier.height(80.dp)
-    ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route
-        items.forEach { item ->
-            BottomNavigationItem(
-                icon =  {
-                    if (currentRoute == item.screen_route) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
-                            modifier = Modifier.padding(vertical = 15.dp)) {
-                            Text(
-                                text = item.title + "\n.",
-                                color = colorResource(id = R.color.nav_bar_blue),
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.ExtraBold,
-                                fontSize = 18.sp
-                            )
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    val bottomBarDestination = items.any { it.screen_route == currentRoute }
+   if (bottomBarDestination) {
+       BottomNavigation(
+           backgroundColor = colorResource(id = R.color.sub_background),
+           contentColor = Color.Black, modifier = Modifier.height(80.dp)
+       ) {
+
+           items.forEach { item ->
+               BottomNavigationItem(
+                   icon =  {
+                       if (currentRoute == item.screen_route) {
+                           Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center,
+                               modifier = Modifier.padding(vertical = 15.dp)) {
+                               Text(
+                                   text = item.title + "\n.",
+                                   color = colorResource(id = R.color.nav_bar_blue),
+                                   textAlign = TextAlign.Center,
+                                   fontWeight = FontWeight.ExtraBold,
+                                   fontSize = 18.sp
+                               )
 //                                fontSize = 30.sp)
 //                            Spacer(modifier = Modifier.height(2.dp))
 //                            Text(
@@ -59,35 +63,36 @@ fun BottomNavBar(navController: NavController) {
 //                                fontWeight = FontWeight.ExtraBold,
 //                                fontSize = 30.sp
 //                            )
-                        }
-                    } else {
-                        Icon(painterResource(id = item.icon),
-                            contentDescription = item.title,
-                            tint = colorResource(
-                                id = R.color.text_color
-                            ), modifier = Modifier.size(30.dp)) }
-                        },
+                           }
+                       } else {
+                           Icon(painterResource(id = item.icon),
+                               contentDescription = item.title,
+                               tint = colorResource(
+                                   id = R.color.text_color
+                               ), modifier = Modifier.size(30.dp)) }
+                   },
 //                label = { Text(text = item.title,
 //                    fontSize = 9.sp) },
-                selectedContentColor = Color.Black,
+                   selectedContentColor = Color.Black,
 //                unselectedContentColor = Color.Black.copy(0.4f),
-                alwaysShowLabel = false,
-                selected = currentRoute == item.screen_route,
-                onClick = {
-                    navController.navigate(item.screen_route) {
+                   alwaysShowLabel = false,
+                   selected = currentRoute == item.screen_route,
+                   onClick = {
+                       navController.navigate(item.screen_route) {
 
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
-                                saveState = true
-                            }
-                        }
-                        launchSingleTop = true
-                        restoreState = true
-                    }
-                }
-            )
-        }
-    }
+                           navController.graph.startDestinationRoute?.let { screen_route ->
+                               popUpTo(screen_route) {
+                                   saveState = true
+                               }
+                           }
+                           launchSingleTop = true
+                           restoreState = true
+                       }
+                   }
+               )
+           }
+       }
+   }
 }
 //@Composable
 // fun currentRoute(navController: NavHostController): String? {
