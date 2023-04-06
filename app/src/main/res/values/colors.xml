@@ -11,4 +11,6 @@
     <color name="sub_background">#FF222232</color>
     <color name="background">#FF181829</color>
     <color name="nav_bar_blue">#FF246BFD</color>
+    <color name="select_sport_color">#FFEF7C60</color>
+    <color name="score_card_color">#FF2B2B3D</color>
 </resources>
