@@ -22,6 +22,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composetestproject.MatchInfo
 import com.example.composetestproject.R
@@ -51,7 +52,7 @@ fun MatchDetailsScreen(navController: NavHostController) {
     ) {
         Column() {
             ScoreWidget()
-            Column() {
+            Column {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -75,9 +76,40 @@ fun MatchDetailsScreen(navController: NavHostController) {
 //                    Text(text = "Line Up", color = Color.White, modifier = Modifier.padding(5.dp))
 //                    Text(text = "Line Up", color = Color.White, modifier = Modifier.padding(5.dp))
                 }
+
+                Column(modifier = Modifier.padding(vertical = 20.dp)) {
+                    MatchDetailsTile(data1 = "8", data2 = "12", name = "Shooting")
+                    MatchDetailsTile(data1 = "22", data2 = "29", name = "Attacks")
+                    MatchDetailsTile(data1 = "42", data2 = "58", name = "Possession")
+                    MatchDetailsTile(data1 = "3", data2 = "5", name = "Cards")
+                    MatchDetailsTile(data1 = "8", data2 = "7", name = "Corners")
+                }
+
+                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                    Text(text = "Other Match", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                    Text(text = "See all", color = Color(0xffC4C4C4), fontSize = 14.sp)
+                }
             } 
         }
         
+    }
+}
+
+@Composable
+fun MatchDetailsTile( data1: String, data2: String, name: String) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp), horizontalArrangement = Arrangement.SpaceAround
+    ) {
+        Text(text = data1, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+        Text(
+            text = name,
+            color = Color(0xffC4C4C4),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.SemiBold
+        )
+        Text(text = data2, color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
     }
 }
 
