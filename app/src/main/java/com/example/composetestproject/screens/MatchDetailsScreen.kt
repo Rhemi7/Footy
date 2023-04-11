@@ -3,7 +3,9 @@ package com.example.composetestproject.navigation
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
@@ -27,6 +29,7 @@ import androidx.navigation.NavHostController
 import com.example.composetestproject.MatchInfo
 import com.example.composetestproject.R
 import com.example.composetestproject.Sport
+import com.example.composetestproject.components.ScoreCardComponent
 import com.example.composetestproject.components.SportyAppBar
 import com.example.composetestproject.components.TeamIcon
 
@@ -52,7 +55,7 @@ fun MatchDetailsScreen(navController: NavHostController) {
     ) {
         Column() {
             ScoreWidget()
-            Column {
+            Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -85,9 +88,44 @@ fun MatchDetailsScreen(navController: NavHostController) {
                     MatchDetailsTile(data1 = "8", data2 = "7", name = "Corners")
                 }
 
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(text = "Other Match", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
-                    Text(text = "See all", color = Color(0xffC4C4C4), fontSize = 14.sp)
+                Column(modifier = Modifier.padding(horizontal = 20.dp)) {
+                    Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp), horizontalArrangement = Arrangement.SpaceBetween) {
+                        Text(text = "Other Match", color = Color.White, fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+                        Text(text = "See all", color = Color(0xffC4C4C4), fontSize = 14.sp)
+                    }
+                    ScoreCardComponent(
+                        fTeamImage = R.drawable.astonvilla,
+                        sTeamImage = R.drawable.liverpool,
+                        fTeamName = "Aston Villa",
+                        sTeamName = "Liverpool",
+                        fTeamScore = "2",
+                        secTeamScore = "3",
+                        dur = "FT"
+                    ){
+                        navController.navigate(AppScreens.MatchDetailsScreen.name)
+                    }
+                    ScoreCardComponent(
+                        fTeamImage = R.drawable.astonvilla,
+                        sTeamImage = R.drawable.liverpool,
+                        fTeamName = "Aston Villa",
+                        sTeamName = "Liverpool",
+                        fTeamScore = "2",
+                        secTeamScore = "3",
+                        dur = "FT"
+                    ){
+                        navController.navigate(AppScreens.MatchDetailsScreen.name)
+                    }
+                    ScoreCardComponent(
+                        fTeamImage = R.drawable.astonvilla,
+                        sTeamImage = R.drawable.liverpool,
+                        fTeamName = "Aston Villa",
+                        sTeamName = "Liverpool",
+                        fTeamScore = "2",
+                        secTeamScore = "3",
+                        dur = "FT"
+                    ){
+                        navController.navigate(AppScreens.MatchDetailsScreen.name)
+                    }
                 }
             } 
         }
