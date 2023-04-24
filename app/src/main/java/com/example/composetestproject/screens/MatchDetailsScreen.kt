@@ -1,4 +1,4 @@
-package com.example.composetestproject.navigation
+package com.example.composetestproject.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
@@ -28,10 +28,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.composetestproject.MatchInfo
 import com.example.composetestproject.R
-import com.example.composetestproject.Sport
 import com.example.composetestproject.components.ScoreCardComponent
 import com.example.composetestproject.components.SportyAppBar
 import com.example.composetestproject.components.TeamIcon
+import com.example.composetestproject.navigation.AppScreens
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
