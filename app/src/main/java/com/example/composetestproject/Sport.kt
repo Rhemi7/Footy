@@ -14,3 +14,8 @@ enum class MatchInfo {
     LineUp,
     H2H
 }
+
+enum class Team {
+    Home,
+    Away
+}
