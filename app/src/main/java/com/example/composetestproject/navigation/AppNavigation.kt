@@ -62,9 +62,9 @@ fun DashboardConfigurations(navController: NavHostController) {
         composable(AppScreens.MatchDetailsScreen.name) {
             MatchDetailsScreen(navController)
         }
-//        composable(AppScreens.HomeHost.name) {
-//            HomeHost()
-//        }
+        composable(AppScreens.SearchScreen.name) {
+            SearchScreen(navController)
+        }
     }
 }
 
