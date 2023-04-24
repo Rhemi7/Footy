@@ -47,7 +47,7 @@ import com.example.composetestproject.navigation.AppScreens
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(navController: NavController) {
-    var sportSelected: MutableState<Sport> = remember {
+    val sportSelected: MutableState<Sport> = remember {
         mutableStateOf(Sport.Soccer)
     }
 
