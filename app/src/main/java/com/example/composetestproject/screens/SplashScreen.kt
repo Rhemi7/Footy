@@ -20,6 +20,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -117,25 +118,40 @@ fun SportWidget(
    Column(
        horizontalAlignment = Alignment.CenterHorizontally
    ) {
-       Surface(
-           shape = CircleShape,
-           color = color,
-           modifier = Modifier
-               .size(105.dp)
-               .padding(bottom = 5.dp)
-               .clickable {
-                   onClick.invoke()
-               },
-       ) {
-           Image(
-               painter = painterResource(id = image),
-               contentDescription = "Football Icon",
-               alignment = Alignment.Center,
-               modifier = Modifier
-                   .size(30.dp)
-                   .padding(28.dp)
-           )
+       CircularSportWidget(modifier = Modifier, color = color, image =  image) {
+           onClick.invoke()
        }
        Text(text = name, color = Color.White, fontWeight = FontWeight.SemiBold)
    }
+}
+
+@Composable
+fun CircularSportWidget(
+    modifier: Modifier,
+    color: Color,
+    image: Int,
+    circleSize: Dp = 105.dp,
+    iconSize: Dp = 30.dp,
+    iconPadding: Dp = 28.dp,
+    onClick: () -> Unit,
+) {
+    Surface(
+        shape = CircleShape,
+        color = color,
+        modifier = modifier
+            .size(circleSize)
+            .padding(bottom = 5.dp)
+            .clickable {
+                onClick.invoke()
+            },
+    ) {
+        Image(
+            painter = painterResource(id = image),
+            contentDescription = "Sport Icon",
+            alignment = Alignment.Center,
+            modifier = Modifier
+                .size(iconSize)
+                .padding(iconPadding)
+        )
+    }
 }
